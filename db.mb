@@ -1,34 +1,130 @@
 {
   "products": [
     {
-      "title": "Essence Mascara Lash Princess 123",
-      "price": 10,
+      "id": 1,
+      "title": "Essence Mascara Lash Princess",
       "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
-      "category": "Laptop",
-      "images": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png",
-      "brand": "Essence",
+      "category": "beauty",
+      "price": 9.99,
+      "discountPercentage": 7.17,
+      "rating": 4.94,
       "stock": 5,
-      "rating": 4,
-      "discountPercentage": 0,
-      "id": 1
+      "tags": [
+        "beauty",
+        "mascara"
+      ],
+      "brand": "Essence",
+      "sku": "RCH45Q1A",
+      "weight": 2,
+      "dimensions": {
+        "width": 23.17,
+        "height": 14.43,
+        "depth": 28.01
+      },
+      "warrantyInformation": "1 month warranty",
+      "shippingInformation": "Ships in 1 month",
+      "availabilityStatus": "Low Stock",
+      "reviews": [
+        {
+          "rating": 2,
+          "comment": "Very unhappy with my purchase!",
+          "date": "2024-05-23T08:56:21.618Z",
+          "reviewerName": "John Doe",
+          "reviewerEmail": "john.doe@x.dummyjson.com"
+        },
+        {
+          "rating": 2,
+          "comment": "Not as described!",
+          "date": "2024-05-23T08:56:21.618Z",
+          "reviewerName": "Nolan Gonzalez",
+          "reviewerEmail": "nolan.gonzalez@x.dummyjson.com"
+        },
+        {
+          "rating": 5,
+          "comment": "Very satisfied!",
+          "date": "2024-05-23T08:56:21.618Z",
+          "reviewerName": "Scarlett Wright",
+          "reviewerEmail": "scarlett.wright@x.dummyjson.com"
+        }
+      ],
+      "returnPolicy": "30 days return policy",
+      "minimumOrderQuantity": 24,
+      "meta": {
+        "createdAt": "2024-05-23T08:56:21.618Z",
+        "updatedAt": "2024-05-23T08:56:21.618Z",
+        "barcode": "9164035109868",
+        "qrCode": "https://dummyjson.com/public/qr-code.png"
+      },
+      "images":
+        "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/1.png"
+      ,
+      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Essence%20Mascara%20Lash%20Princess/thumbnail.png"
     },
     {
+      "id": 2,
       "title": "Eyeshadow Palette with Mirror",
-      "price": 20,
       "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-      "category": "Laptop",
-      "images": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png",
+      "category": "beauty",
+      "price": 19.99,
+      "discountPercentage": 5.5,
+      "rating": 3.28,
+      "stock": 44,
+      "tags": [
+        "beauty",
+        "eyeshadow"
+      ],
       "brand": "Glamour Beauty",
-      "stock": 22,
-      "rating": 3,
-      "discountPercentage": 20,
-      "id": 2
+      "sku": "MVCFH27F",
+      "weight": 3,
+      "dimensions": {
+        "width": 12.42,
+        "height": 8.63,
+        "depth": 29.13
+      },
+      "warrantyInformation": "1 year warranty",
+      "shippingInformation": "Ships in 2 weeks",
+      "availabilityStatus": "In Stock",
+      "reviews": [
+        {
+          "rating": 4,
+          "comment": "Very satisfied!",
+          "date": "2024-05-23T08:56:21.618Z",
+          "reviewerName": "Liam Garcia",
+          "reviewerEmail": "liam.garcia@x.dummyjson.com"
+        },
+        {
+          "rating": 1,
+          "comment": "Very disappointed!",
+          "date": "2024-05-23T08:56:21.618Z",
+          "reviewerName": "Nora Russell",
+          "reviewerEmail": "nora.russell@x.dummyjson.com"
+        },
+        {
+          "rating": 5,
+          "comment": "Highly impressed!",
+          "date": "2024-05-23T08:56:21.618Z",
+          "reviewerName": "Elena Baker",
+          "reviewerEmail": "elena.baker@x.dummyjson.com"
+        }
+      ],
+      "returnPolicy": "30 days return policy",
+      "minimumOrderQuantity": 32,
+      "meta": {
+        "createdAt": "2024-05-23T08:56:21.618Z",
+        "updatedAt": "2024-05-23T08:56:21.618Z",
+        "barcode": "2817839095220",
+        "qrCode": "https://dummyjson.com/public/qr-code.png"
+      },
+      "images":
+        "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/1.png"
+      ,
+      "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Eyeshadow%20Palette%20with%20Mirror/thumbnail.png"
     },
     {
       "id": 3,
       "title": "Powder Canister",
       "description": "The Powder Canister is a finely milled setting powder designed to set makeup and control shine. With a lightweight and translucent formula, it provides a smooth and matte finish.",
-      "category": "Laptop",
+      "category": "beauty",
       "price": 14.99,
       "discountPercentage": 18.14,
       "rating": 3.82,
@@ -79,14 +175,16 @@
         "barcode": "0516267971277",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Powder%20Canister/thumbnail.png"
     },
     {
       "id": 4,
       "title": "Red Lipstick",
       "description": "The Red Lipstick is a classic and bold choice for adding a pop of color to your lips. With a creamy and pigmented formula, it provides a vibrant and long-lasting finish.",
-      "category": "Laptop",
+      "category": "beauty",
       "price": 12.99,
       "discountPercentage": 19.03,
       "rating": 2.51,
@@ -137,14 +235,16 @@
         "barcode": "9444582199406",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/beauty/Red%20Lipstick/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/beauty/Red%20Lipstick/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Red%20Lipstick/thumbnail.png"
     },
     {
       "id": 5,
       "title": "Red Nail Polish",
       "description": "The Red Nail Polish offers a rich and glossy red hue for vibrant and polished nails. With a quick-drying formula, it provides a salon-quality finish at home.",
-      "category": "Laptop",
+      "category": "beauty",
       "price": 8.99,
       "discountPercentage": 2.46,
       "rating": 3.91,
@@ -195,14 +295,16 @@
         "barcode": "3212847902461",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/beauty/Red%20Nail%20Polish/thumbnail.png"
     },
     {
       "id": 16,
       "title": "Apple",
       "description": "Fresh and crisp apples, perfect for snacking or incorporating into various recipes.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 1.99,
       "discountPercentage": 1.97,
       "rating": 2.96,
@@ -251,14 +353,16 @@
         "barcode": "2517819903837",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Apple/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Apple/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Apple/thumbnail.png"
     },
     {
       "id": 17,
       "title": "Beef Steak",
       "description": "High-quality beef steak, great for grilling or cooking to your preferred level of doneness.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 12.99,
       "discountPercentage": 17.99,
       "rating": 2.83,
@@ -307,14 +411,16 @@
         "barcode": "8335515097879",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Beef%20Steak/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Beef%20Steak/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Beef%20Steak/thumbnail.png"
     },
     {
       "id": 18,
       "title": "Cat Food",
       "description": "Nutritious cat food formulated to meet the dietary needs of your feline friend.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 8.99,
       "discountPercentage": 9.57,
       "rating": 2.88,
@@ -364,14 +470,16 @@
         "barcode": "5503491330693",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Cat%20Food/thumbnail.png"
     },
     {
       "id": 20,
       "title": "Cooking Oil",
       "description": "Versatile cooking oil suitable for frying, sautéing, and various culinary applications.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 4.99,
       "discountPercentage": 18.89,
       "rating": 4.01,
@@ -420,14 +528,16 @@
         "barcode": "6707669443381",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Cooking%20Oil/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Cooking%20Oil/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Cooking%20Oil/thumbnail.png"
     },
     {
       "id": 21,
       "title": "Cucumber",
       "description": "Crisp and hydrating cucumbers, ideal for salads, snacks, or as a refreshing side.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 1.49,
       "discountPercentage": 11.44,
       "rating": 4.71,
@@ -476,14 +586,16 @@
         "barcode": "2597004869708",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Cucumber/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Cucumber/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Cucumber/thumbnail.png"
     },
     {
       "id": 22,
       "title": "Dog Food",
       "description": "Specially formulated dog food designed to provide essential nutrients for your canine companion.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 10.99,
       "discountPercentage": 18.15,
       "rating": 2.74,
@@ -533,14 +645,16 @@
         "barcode": "7957222289508",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Dog%20Food/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Dog%20Food/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Dog%20Food/thumbnail.png"
     },
     {
       "id": 23,
       "title": "Eggs",
       "description": "Fresh eggs, a versatile ingredient for baking, cooking, or breakfast.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 2.99,
       "discountPercentage": 5.8,
       "rating": 4.46,
@@ -589,14 +703,16 @@
         "barcode": "7095702028776",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Eggs/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Eggs/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Eggs/thumbnail.png"
     },
     {
       "id": 24,
       "title": "Fish Steak",
       "description": "Quality fish steak, suitable for grilling, baking, or pan-searing.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 14.99,
       "discountPercentage": 7,
       "rating": 4.83,
@@ -645,14 +761,16 @@
         "barcode": "4250692197342",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Fish%20Steak/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Fish%20Steak/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Fish%20Steak/thumbnail.png"
     },
     {
       "id": 25,
       "title": "Green Bell Pepper",
       "description": "Fresh and vibrant green bell pepper, perfect for adding color and flavor to your dishes.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 1.29,
       "discountPercentage": 15.5,
       "rating": 4.28,
@@ -701,14 +819,16 @@
         "barcode": "7583442707568",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Green%20Bell%20Pepper/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Green%20Bell%20Pepper/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Green%20Bell%20Pepper/thumbnail.png"
     },
     {
       "id": 26,
       "title": "Green Chili Pepper",
       "description": "Spicy green chili pepper, ideal for adding heat to your favorite recipes.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 0.99,
       "discountPercentage": 18.51,
       "rating": 4.43,
@@ -757,14 +877,16 @@
         "barcode": "8400326844874",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Green%20Chili%20Pepper/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Green%20Chili%20Pepper/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Green%20Chili%20Pepper/thumbnail.png"
     },
     {
       "id": 27,
       "title": "Honey Jar",
       "description": "Pure and natural honey in a convenient jar, perfect for sweetening beverages or drizzling over food.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 6.99,
       "discountPercentage": 1.91,
       "rating": 3.5,
@@ -813,14 +935,16 @@
         "barcode": "0668665656044",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Honey%20Jar/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Honey%20Jar/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Honey%20Jar/thumbnail.png"
     },
     {
       "id": 29,
       "title": "Juice",
       "description": "Refreshing fruit juice, packed with vitamins and great for staying hydrated.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 3.99,
       "discountPercentage": 5.45,
       "rating": 3.41,
@@ -869,14 +993,16 @@
         "barcode": "8546824122355",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Juice/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Juice/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Juice/thumbnail.png"
     },
     {
       "id": 30,
       "title": "Kiwi",
       "description": "Nutrient-rich kiwi, perfect for snacking or adding a tropical twist to your dishes.",
-      "category": "Watch",
+      "category": "groceries",
       "price": 2.49,
       "discountPercentage": 10.32,
       "rating": 4.37,
@@ -925,7 +1051,9 @@
         "barcode": "3325493172934",
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
-      "images": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/1.png",
+      "images":
+        "https://cdn.dummyjson.com/products/images/groceries/Kiwi/1.png"
+      ,
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/thumbnail.png"
     }
   ]
