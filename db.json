@@ -928,5 +928,19 @@
       "images": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/1.png",
       "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/thumbnail.png"
     }
+  ],
+  "users": [
+    {
+      "email": "123@gmail.com",
+      "password": "$2a$10$hWQiSyhxD0wn/EWOu8vze.rVDfY1haqn1nvw9QaWzEH/BTVoJys/y",
+      "username": "trankhanh",
+      "id": 1
+    },
+    {
+      "email": "admin@gmail.com",
+      "password": "$2a$10$rayaxs4bfWMtnag33XeqouVCHUcooBzJf5xHs/r5ubGbhkGRpvCTa",
+      "username": "admin",
+      "id": 2
+    }
   ]
 }

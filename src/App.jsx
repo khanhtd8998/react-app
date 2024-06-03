@@ -14,6 +14,8 @@ import Contact from './pages/user/Contact'
 import Home from './pages/user/Home'
 import ProductDetail from './pages/user/ProductDetail'
 import swal from 'sweetalert';
+import Register from './pages/user/Register'
+import Login from './pages/user/Login'
 
 function App() {
   const navigate = useNavigate()
@@ -30,20 +32,7 @@ function App() {
       }
     )();
   }, [])
-  // const HandleDeleteProduct = (id) => {
-  //   (
-  //     async () => {
-  //       try {
-  //         await instance.delete('/products/' + id);
-  //         setProducts(products.filter((product) => product.id != id));
-  //         alert("Delete product successfully!")
-  //       } catch (error) {
-  //         console.log(error)
-  //       }
-  //     }
-  //   )()
-  // }
-
+  
   const HandleDeleteProduct = (id) => {
     swal({
       title: "Bạn muốn xóa sản phẩm này?",
@@ -65,7 +54,11 @@ function App() {
                 timer: 2000
               });
             } catch (error) {
-              console.log(error)
+              swal({
+                title: `${error.response.data}`,
+                icon: "warning",
+                dangerMode: true,
+              })
             }
           }
         )()
@@ -109,7 +102,7 @@ function App() {
           }, 1000)
         } catch (error) {
           swal({
-            title: `${error.error.message}`,
+            title: `${error.response.data}`,
             icon: "warning",
             dangerMode: true,
           })
@@ -125,6 +118,8 @@ function App() {
           <Route path='/products/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} />
         </Route>
 
         <Route path='/admin' element={<AdminLayout />}>
