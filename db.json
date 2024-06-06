@@ -941,6 +941,18 @@
       "password": "$2a$10$rayaxs4bfWMtnag33XeqouVCHUcooBzJf5xHs/r5ubGbhkGRpvCTa",
       "username": "admin",
       "id": 2
+    },
+    {
+      "email": "dohanh@gmail.com",
+      "password": "$2a$10$yZ1XXXh.UUsevKjYDJWOa.romug1m7qDiPrxWtmQCQrqwPGpxW16W",
+      "username": "dohanh",
+      "id": 3
+    },
+    {
+      "email": "dohanh1@gmail.com",
+      "password": "$2a$10$kxO018kWH7NvoE97QRqfMes3S05Yz.ePOyPQ2CX0tijPAK0x1zXjK",
+      "username": "dohanh1",
+      "id": 4
     }
   ]
 }

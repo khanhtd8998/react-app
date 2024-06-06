@@ -1,11 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { loginShema } from '../../schema/authSchema'
 import instance from '../../apis'
 
 const Login = () => {
+    const navigate = useNavigate()
     const {
         register,
         handleSubmit,
@@ -17,7 +18,8 @@ const Login = () => {
         (
             async () => {
                 try {
-                    await instance.post('/login', data)
+                    const res = await instance.post('/login', data)
+                    localStorage.setItem('user', JSON.stringify(res.data))
                     swal({
                         title: "Thành công!",
                         text: "Đăng nhập tài khoản thành công",
@@ -52,6 +54,7 @@ const Login = () => {
                                 'url("https://t4.ftcdn.net/jpg/01/19/11/55/360_F_119115529_mEnw3lGpLdlDkfLgRcVSbFRuVl6sMDty.jpg")'
                         }}
                     ></div>
+                    
                     <div className="w-full p-8 lg:w-1/2">
                         <h2 className="text-2xl font-semibold text-gray-700 text-center">
                             Hey Guy

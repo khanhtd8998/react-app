@@ -16,6 +16,8 @@ import ProductDetail from './pages/user/ProductDetail'
 import swal from 'sweetalert';
 import Register from './pages/user/Register'
 import Login from './pages/user/Login'
+import PrivateRouter from './components/admin/PrivateRouter'
+import AuthForm from './pages/user/AuthForm'
 
 function App() {
   const navigate = useNavigate()
@@ -118,11 +120,13 @@ function App() {
           <Route path='/products/:id' element={<ProductDetail />} />
           <Route path='/about' element={<About />} />
           <Route path='/contact' element={<Contact />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} />
+          {/* <Route path='/register' element={<Register />} />
+          <Route path='/login' element={<Login />} /> */}
+          <Route path='/register' element={<AuthForm isRegister />} />
+          <Route path='/login' element={<AuthForm />} />
         </Route>
 
-        <Route path='/admin' element={<AdminLayout />}>
+        <Route path='/admin' element={<PrivateRouter />}>
           <Route index element={<Dashboard />} />
           <Route path='/admin/products/list' element={<ListProduct onDel={HandleDeleteProduct} products={products} />} />
           <Route path='/admin/products-form' element={<ProductForm onProduct={HandleSubmitForm} />} />
