@@ -37,7 +37,8 @@ const AuthForm = ({ isRegister }) => {
                         }, 1000)
                     } else {
                         const res = await instance.post('/login', data)
-                        localStorage.setItem('user', JSON.stringify(res.data))
+                        localStorage.setItem('token', JSON.stringify(res.data?.accessToken))
+                        localStorage.setItem('user', JSON.stringify(res.data?.user))
                         swal({
                             title: "Thành công!",
                             text: "Đăng nhập tài khoản thành công",

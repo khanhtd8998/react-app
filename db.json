@@ -931,28 +931,18 @@
   ],
   "users": [
     {
-      "email": "123@gmail.com",
-      "password": "$2a$10$hWQiSyhxD0wn/EWOu8vze.rVDfY1haqn1nvw9QaWzEH/BTVoJys/y",
-      "username": "trankhanh",
+      "email": "admin@gmail.com",
+      "password": "$2a$10$8fhAyAFJSZ3T3vX/a18rgujkfusuQydQqRqGvKEoJGkWEeLLOUO7u",
+      "username": "admin",
+      "role": "admin",
       "id": 1
     },
     {
-      "email": "admin@gmail.com",
-      "password": "$2a$10$rayaxs4bfWMtnag33XeqouVCHUcooBzJf5xHs/r5ubGbhkGRpvCTa",
-      "username": "admin",
+      "email": "user1@gmail.com",
+      "password": "$2a$10$nCzii7Z2OBNXkycZOH3UB.dmnwx7nl86irapgobBTKdZux.EPRjnm",
+      "username": "user01",
+      "role": "user",
       "id": 2
-    },
-    {
-      "email": "dohanh@gmail.com",
-      "password": "$2a$10$yZ1XXXh.UUsevKjYDJWOa.romug1m7qDiPrxWtmQCQrqwPGpxW16W",
-      "username": "dohanh",
-      "id": 3
-    },
-    {
-      "email": "dohanh1@gmail.com",
-      "password": "$2a$10$kxO018kWH7NvoE97QRqfMes3S05Yz.ePOyPQ2CX0tijPAK0x1zXjK",
-      "username": "dohanh1",
-      "id": 4
     }
   ]
 }

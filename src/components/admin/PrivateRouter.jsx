@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AdminLayout from '../layouts/AdminLayout'
-import { Navigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
+import UserLayout from '../layouts/UserLayout'
 
 const PrivateRouter = () => {
-    const accessToken = JSON.parse(localStorage.getItem('user'))?.accessToken
-    return accessToken ? <AdminLayout/> : <Navigate to="/login" />
-}
+    const navigate = useNavigate();
+    const accessToken = JSON.parse(localStorage.getItem('token'))
+    const data = JSON.parse(localStorage.getItem('user'))
+    if(!data || !accessToken) return <Navigate to="/login" />
+    return (data.role === 'admin') ? <AdminLayout /> : <Navigate to="/" />
 
+}
 export default PrivateRouter

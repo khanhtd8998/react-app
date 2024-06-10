@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom'
 import { getProductById } from '../../apis/product'
 const ListProduct = ({ products, onDel }) => {
     const [p, setP] = useState({})
+    const [searchTerm, setSearchTerm] = useState("");
+    const handleSearchChange = (e) => {
+        setSearchTerm(e.target.value)
+    }
+    const filteredData = products.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))
     const onShow = (id) => {
         (
             async () => {
@@ -21,7 +26,7 @@ const ListProduct = ({ products, onDel }) => {
     const closeProductDetail = () => {
         const showDetail = document.querySelector('.show-product-detail')
         showDetail?.classList.remove('show-detail')
-      }
+    }
     const onDelete = (id) => {
         onDel(id)
     }
@@ -49,7 +54,8 @@ const ListProduct = ({ products, onDel }) => {
                             id="voice-search"
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search Mockups, Logos, Design Templates..."
-                            required=""
+                            value={searchTerm}
+                            onChange={handleSearchChange}
                         />
                         <button
                             type="button"
@@ -157,7 +163,7 @@ const ListProduct = ({ products, onDel }) => {
                             </thead>
                             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                                 {
-                                    products.map((product) => (
+                                    Array.isArray(filteredData) && filteredData.length > 0 ? filteredData.map((product) => (
                                         <tr key={product.id} className="hover:bg-gray-50">
                                             <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                                                 <div className="text-sm">
@@ -236,7 +242,11 @@ const ListProduct = ({ products, onDel }) => {
                                                 </div>
                                             </td>
                                         </tr>
-                                    ))
+                                    )) : (
+                                        <tr className='text-center'>
+                                            <td className='px-6 py-4 text-lg font-semibold' colSpan={6}>Not found</td>
+                                        </tr>
+                                    )
                                 }
                             </tbody>
                             {

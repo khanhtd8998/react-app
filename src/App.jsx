@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Route, Routes, useNavigate } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom'
 import './App.css'
 import instance from './apis'
 import { createProduct, getAllProducts, updateProduct } from './apis/product'
@@ -14,8 +14,6 @@ import Contact from './pages/user/Contact'
 import Home from './pages/user/Home'
 import ProductDetail from './pages/user/ProductDetail'
 import swal from 'sweetalert';
-import Register from './pages/user/Register'
-import Login from './pages/user/Login'
 import PrivateRouter from './components/admin/PrivateRouter'
 import AuthForm from './pages/user/AuthForm'
 
@@ -26,7 +24,7 @@ function App() {
     (
       async () => {
         try {
-          const data  = await getAllProducts();
+          const data = await getAllProducts();
           setProducts(data);
         } catch (error) {
           console.error("Failed to fetch products:", error);
@@ -34,7 +32,7 @@ function App() {
       }
     )();
   }, [])
-  
+
   const HandleDeleteProduct = (id) => {
     swal({
       title: "Bạn muốn xóa sản phẩm này?",
@@ -43,41 +41,41 @@ function App() {
       buttons: ["Cancel", "OK"],
       dangerMode: true,
     })
-    .then((willDelete) => {
-      if (willDelete) {
-        (
-          async () => {
-            try {
-              await instance.delete('/products/' + id);
-              setProducts(products.filter((product) => product.id != id));
-              swal("Xóa sản phẩm thành công", {
-                icon: "success",
-                buttons: [''],
-                timer: 2000
-              });
-            } catch (error) {
-              swal({
-                title: `${error.response.data}`,
-                icon: "warning",
-                dangerMode: true,
-              })
+      .then((willDelete) => {
+        if (willDelete) {
+          (
+            async () => {
+              try {
+                await instance.delete('/products/' + id);
+                setProducts(products.filter((product) => product.id != id));
+                swal("Xóa sản phẩm thành công", {
+                  icon: "success",
+                  buttons: [''],
+                  timer: 2000
+                });
+              } catch (error) {
+                swal({
+                  title: `${error.response.data}`,
+                  icon: "warning",
+                  dangerMode: true,
+                })
+              }
             }
-          }
-        )()
-      } else {
-        swal("Everything is fine", {
-          icon: "success",
-          buttons: [''],
-          timer: 2000
-        });
-      }
-    });
+          )()
+        } else {
+          swal("Everything is fine", {
+            icon: "success",
+            buttons: [''],
+            timer: 2000
+          });
+        }
+      });
   }
   const HandleSubmitForm = (p) => {
     (
       async () => {
         try {
-          if(p.id) {
+          if (p.id) {
             await updateProduct(p);
             const newData = await getAllProducts();
             setProducts(newData)
@@ -88,7 +86,7 @@ function App() {
               icon: "success",
               timer: 2000
             });
-          }else{
+          } else {
             const data = await createProduct(p);
             setProducts([...products, data]);
             swal({
@@ -114,26 +112,23 @@ function App() {
   }
   return (
     <>
-      <Routes>
-        <Route path='/' element={<UserLayout />}>
-          <Route index element={<Home products={products} />} />
-          <Route path='/products/:id' element={<ProductDetail />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/contact' element={<Contact />} />
-          {/* <Route path='/register' element={<Register />} />
-          <Route path='/login' element={<Login />} /> */}
-          <Route path='/register' element={<AuthForm isRegister />} />
-          <Route path='/login' element={<AuthForm />} />
-        </Route>
-
-        <Route path='/admin' element={<PrivateRouter />}>
-          <Route index element={<Dashboard />} />
-          <Route path='/admin/products/list' element={<ListProduct onDel={HandleDeleteProduct} products={products} />} />
-          <Route path='/admin/products-form' element={<ProductForm onProduct={HandleSubmitForm} />} />
-          <Route path='/admin/products-form/:id' element={<ProductForm onProduct={HandleSubmitForm} />} />
-        </Route>
-        <Route path='*' element={<Notfound />} />
-      </Routes>
+        <Routes >
+          <Route path='/' element={<UserLayout />}>
+            <Route index element={<Home products={products} />} />
+            <Route path='/products/:id' element={<ProductDetail />} />
+            <Route path='/about' element={<About />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='/register' element={<AuthForm isRegister />} />
+            <Route path='/login' element={<AuthForm />} />
+          </Route>
+          <Route path='/admin' element={<PrivateRouter />}>
+            <Route index element={<Dashboard />} />
+            <Route path='/admin/products/list' element={<ListProduct onDel={HandleDeleteProduct} products={products} />} />
+            <Route path='/admin/products-form' element={<ProductForm onProduct={HandleSubmitForm} />} />
+            <Route path='/admin/products-form/:id' element={<ProductForm onProduct={HandleSubmitForm} />} />
+          </Route>
+          <Route path='*' element={<Notfound />} />
+        </Routes>
     </>
   )
 }

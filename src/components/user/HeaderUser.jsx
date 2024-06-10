@@ -1,7 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const HeaderUser = () => {
+    const [isLogin, setIsLogin] = useState(false)
+    const [user, setUser] = useState({})
+    const [isOpen, setIsOpen] = useState(false);
+    const token = JSON.parse(localStorage.getItem('token'))
+    const data = JSON.parse(localStorage.getItem('user'))
+    useEffect(() => {
+        if (token) {
+            setIsLogin(true)
+            setUser(data)
+        }
+    }, [])
+    const toggleDropdown = () => {
+        setIsOpen(!isOpen);
+    };
+    const handleLogout = () => {
+        localStorage.removeItem('user')
+        setIsLogin(!isLogin);
+        setUser(null)
+    }
     return (
         <>
             <header className="bg-white relative">
@@ -34,39 +53,88 @@ const HeaderUser = () => {
                             </ul>
                         </nav>
 
-                        <div className="flex items-center gap-4">
-                            <div className="sm:flex sm:gap-4">
-                                <Link
-                                    className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
-                                    to={'/login'}
-                                >
-                                    Login
-                                </Link>
-
-                                <Link
-                                    className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
-                                    to={'/register'}
-                                >
-                                    Register
-                                </Link>
+                        <div className="flex items-center gap-1">
+                            <div className="flex items-center md:w-[20rem] justify-end from-teal-10 bg-gradient-to-br">
+                                <form className="relative flex">
+                                    <input
+                                        name="search"
+                                        type="search"
+                                        className="text- peer cursor-pointer relative z-10 h-11 w-11 rounded-lg bg-transparent  pr-10 outline-none focus:rounded-r-none focus:w-full focus:cursor-text focus:border-taupeGray focus:px-3"
+                                        placeholder="Search..."
+                                    />
+                                    <button
+                                        type="submit"
+                                        className="absolute top-0 right-0 bottom-0 my-auto h-11 w-11 px-3 bg-white rounded-lg peer-focus:relative peer-focus:rounded-l-none"
+                                    >
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            x="0px"
+                                            y="0px"
+                                            width={20}
+                                            height={20}
+                                            viewBox="0 0 50 50"
+                                        >
+                                            <path d="M 21 3 C 11.601563 3 4 10.601563 4 20 C 4 29.398438 11.601563 37 21 37 C 24.355469 37 27.460938 36.015625 30.09375 34.34375 L 42.375 46.625 L 46.625 42.375 L 34.5 30.28125 C 36.679688 27.421875 38 23.878906 38 20 C 38 10.601563 30.398438 3 21 3 Z M 21 7 C 28.199219 7 34 12.800781 34 20 C 34 27.199219 28.199219 33 21 33 C 13.800781 33 8 27.199219 8 20 C 8 12.800781 13.800781 7 21 7 Z"></path>
+                                        </svg>
+                                    </button>
+                                </form>
                             </div>
+                            {
+                                !isLogin && (
+                                    <div className="sm:flex sm:gap-1">
+                                        <Link
+                                            className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
+                                            to={'/login'}
+                                        >
+                                            Login
+                                        </Link>
 
-                            <button
-                                className="block rounded bg-gray-100 p-2.5 text-gray-600 transition hover:text-gray-600/75 md:hidden"
-                            >
-                                <span className="sr-only">Toggle menu</span>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-5 w-5"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    strokeWidth="2"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                                </svg>
-                            </button>
+                                        <Link
+                                            className="hidden rounded-md bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600 transition hover:text-teal-600/75 sm:block"
+                                            to={'/register'}
+                                        >
+                                            Register
+                                        </Link>
+                                    </div>
+                                )
+                            }
+
+                            {
+                                isLogin && (
+                                    <div className='relative flex items-center justify-end gap-3'>
+                                        <p><strong>{user?.username}</strong></p>
+                                        <img
+                                            src={'https://picsum.photos/200/200'}
+                                            className='rounded-full cursor-pointer'
+                                            width={40}
+                                            height={40}
+                                            alt=""
+                                            onClick={toggleDropdown}
+                                        />
+                                        {isOpen && (
+                                            <div className='absolute right-0 mt-44 w-44 bg-white border border-gray-300 rounded shadow-lg'>
+                                                <ul className=''>
+                                                    <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><a className='w-full block' href="">Thông tin cá nhân</a></li>
+                                                    <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><a className='w-full block' href="">Lịch sử đặt hàng</a></li>
+                                                    <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><button onClick={handleLogout} className='mx-auto'>Đăng xuất</button></li>
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
+                                )
+                            }
+
+
+                            <div className="block md:hidden">
+                                <button className="rounded bg-gray-100 p-2 text-gray-600 transition hover:text-gray-600/75">
+                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" strokeWidth="2">
+                                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
+
                     </div>
                 </div>
             </header>
