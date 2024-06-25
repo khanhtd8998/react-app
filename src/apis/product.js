@@ -32,10 +32,6 @@ export const createProduct = async (p) => {
         const { data } = await instance.post(`/products`, p);
         return data
     } catch (error) {
-        swal({
-            title: `${error.message}`,
-            icon: "warning",
-            dangerMode: true,
-          })
+        console.log(error)
     }
 }

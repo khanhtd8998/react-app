@@ -46,6 +46,12 @@ const AuthForm = ({ isRegister }) => {
                             icon: "success",
                             timer: 2000
                         });
+                        if (res.data?.user?.role === "admin") {
+                            setTimeout(() => {
+                                navigate("/admin")
+                            }, 1000)
+                            return
+                        }
                         setTimeout(() => {
                             navigate("/")
                         }, 1000)
