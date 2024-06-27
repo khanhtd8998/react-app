@@ -18,7 +18,7 @@ const ListProduct = () => {
             }
         })()
     }, [dispatch]);
-    // const filteredData = state.products.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredData = state.products.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))
     const showProductDetail = (id) => {
         (
             async () => {
@@ -208,7 +208,7 @@ const ListProduct = () => {
                             </thead>
                             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                                 {
-                                    Array.isArray(state.products) && state.products.length > 0 ? state.products.map((product) => (
+                                    Array.isArray(filteredData) && filteredData.length > 0 ? filteredData.map((product) => (
                                         <tr key={product.id} className="hover:bg-gray-50">
                                             <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
                                                 <span className="text-sm">

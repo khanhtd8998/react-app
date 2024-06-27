@@ -6,11 +6,12 @@ import swal from 'sweetalert'
 import { createProduct, getProductById, updateProduct } from '../../apis/product'
 import { ProductContext } from '../../contexts/ProductContext'
 import productSchema from '../../schema/productSchema'
+import instance from '../../apis'
 const { VITE_CLOUD_NAME, VITE_UPLOAD_PRESET } = import.meta.env;
 const ProductForm = () => {
+    const navigate = useNavigate()
     const { id } = useParams()
     const { state, dispatch } = useContext(ProductContext)
-    const navigate = useNavigate()
     const [imgUrl, setImgUrl] = useState(null);
     const [imgOption, setImgOption] = useState("keep");
     const {
@@ -31,27 +32,30 @@ const ProductForm = () => {
         }
     }, [id, reset]);
     const uploadImage = async (file) => {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("upload_preset", VITE_UPLOAD_PRESET);
-
-        const res = await fetch(`https://api.cloudinary.com/v1_1/${VITE_CLOUD_NAME}/image/upload`, {
-            method: "POST",
-            body: formData,
-        });
-        const data = await res.json();
-        return data.secure_url;
-    };
-    const onSubmit = async (data) => {
         try {
-            if (imgOption === "link" && !data.images) {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("upload_preset", VITE_UPLOAD_PRESET);
+            const res = await fetch(`https://api.cloudinary.com/v1_1/${VITE_CLOUD_NAME}/image/upload`, {
+                method: "POST",
+                body: formData,
+            })
+            const data = await res.json();
+            return data.secure_url;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+    const onSubmit = async (product) => {
+        try {
+            if (imgOption === "link" && !product.images) {
                 return swal({
                     title: "Error",
                     text: "Không để trống thông tin",
                     icon: "warning",
                     dangerMode: true,
                 });
-            } else if (imgOption === "upload" && !data.images.length) {
+            } else if (imgOption === "upload" && !product.images.length) {
                 return swal({
                     title: "Error",
                     text: "Không để trống thông tin",
@@ -59,9 +63,20 @@ const ProductForm = () => {
                     dangerMode: true,
                 });
             }
+            let updatedProduct = { ...product };
+            switch (imgOption) {
+                case "upload":
+                    if (product.images && product.images[0]) {
+                        const thumbnailUrl = await uploadImage(product.images[0]);
+                        updatedProduct = { ...updatedProduct, images: thumbnailUrl };
+                    }
+                    break;
+                default:
+
+            }
             if (id) {
-                await updateProduct(id, data);
-                dispatch({ type: "UPDATE_PRODUCT", payload: { id, ...data } })
+                const { data } = await instance.patch(`/products/${id}`, updatedProduct);
+                dispatch({ type: "UPDATE_PRODUCT", payload: { id, product: updatedProduct } })
                 swal({
                     title: "Thành công!",
                     text: "Cập nhật sản phẩm thành công",
@@ -70,7 +85,7 @@ const ProductForm = () => {
                     timer: 2000
                 });
             } else {
-                const res = await createProduct(data);
+                const res = await createProduct(updatedProduct);
                 dispatch({ type: "ADD_PRODUCT", payload: res })
                 swal({
                     title: "Thành công!",

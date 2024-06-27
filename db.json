@@ -1,7 +1,7 @@
 {
   "products": [
     {
-      "title": "Essence Mascara Lash Princess 123",
+      "title": "Essence Mascara Lash Princess",
       "price": 10,
       "description": "The Essence Mascara Lash Princess is a popular mascara known for its volumizing and lengthening effects. Achieve dramatic lashes with this long-lasting and cruelty-free formula.",
       "category": "Laptop",
@@ -874,7 +874,7 @@
     },
     {
       "id": 30,
-      "title": "Kiwi",
+      "title": "Kiwi Hawoai",
       "description": "Nutrient-rich kiwi, perfect for snacking or adding a tropical twist to your dishes.",
       "category": "Watch",
       "price": 2.49,
@@ -926,7 +926,32 @@
         "qrCode": "https://dummyjson.com/public/qr-code.png"
       },
       "images": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/1.png",
-      "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/thumbnail.png"
+      "thumbnail": "https://cdn.dummyjson.com/products/images/groceries/Kiwi/thumbnail.png",
+      "brand": "Samsung"
+    },
+    {
+      "title": "Samsung QLED 4k 44inch",
+      "price": 899,
+      "description": "Đang cập nhật",
+      "category": "Laptop",
+      "images": "https://res.cloudinary.com/dpuz4yuba/image/upload/v1719499406/qxgisnibesgnu7zg0z4q.jpg",
+      "brand": "Samsung",
+      "stock": 0,
+      "rating": 0,
+      "discountPercentage": 0,
+      "id": 31
+    },
+    {
+      "title": "Đồng hồ Orient",
+      "price": 299.2,
+      "description": "Đang cập nhật",
+      "category": "Watch",
+      "images": "https://res.cloudinary.com/dpuz4yuba/image/upload/v1719499585/b6q5dqlh8n8iuyhjykew.jpg",
+      "brand": "Orient",
+      "stock": 12,
+      "rating": 2,
+      "discountPercentage": 0,
+      "id": 32
     }
   ],
   "users": [
