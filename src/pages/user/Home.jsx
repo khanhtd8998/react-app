@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Banner from '../../components/user/Banner'
 import ProductCard from '../../components/user/ProductCard'
+import { ProductContext } from '../../contexts/ProductContext'
 
-const Home = ({ products }) => {
+const Home = () => {
+    const { state } = useContext(ProductContext)
     return (
         <>
             <Banner></Banner>
@@ -20,14 +22,13 @@ const Home = ({ products }) => {
                     </header>
                     <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
                         {
-                            Array.isArray(products) && products.length > 0
-                                ? products.map((product) => (<ProductCard key={product.id} product={product} />))
+                            Array.isArray(state.products) && state.products.length > 0
+                                ? state.products.map((product) => (<ProductCard key={product.id} product={product} />))
                                 : <p>No products available.</p>
                         }
                     </div>
                 </div>
             </section>
-
         </>
     )
 }

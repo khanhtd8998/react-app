@@ -1,15 +1,25 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { isEmpty } from 'lodash'
 import { Link } from 'react-router-dom'
-import { getProductById } from '../../apis/product'
-const ListProduct = ({ products, onDel }) => {
+import { getAllProducts, getProductById } from '../../apis/product'
+import { ProductContext } from '../../contexts/ProductContext'
+import instance from '../../apis'
+const ListProduct = () => {
+    const { state, dispatch } = useContext(ProductContext)
     const [p, setP] = useState({})
     const [searchTerm, setSearchTerm] = useState("");
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value)
-    }
-    const filteredData = products.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))
-    const onShow = (id) => {
+    useEffect(() => {
+        (async () => {
+            try {
+                const data = await getAllProducts();
+                dispatch({ type: 'SET_PRODUCTS', payload: data });
+            } catch (error) {
+                console.error('Failed to fetch products', error);
+            }
+        })()
+    }, [dispatch]);
+    // const filteredData = state.products.filter(item => item.title.toLowerCase().includes(searchTerm.toLowerCase()))
+    const showProductDetail = (id) => {
         (
             async () => {
                 try {
@@ -27,8 +37,43 @@ const ListProduct = ({ products, onDel }) => {
         const showDetail = document.querySelector('.show-product-detail')
         showDetail?.classList.remove('show-detail')
     }
-    const onDelete = (id) => {
-        onDel(id)
+    const handleDelete = (id) => {
+        swal({
+            title: "Bạn muốn xóa sản phẩm này?",
+            text: "Sau khi xóa, bạn sẽ không thể khôi phục sản phẩm này!",
+            icon: "warning",
+            buttons: ["Cancel", "OK"],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    (
+                        async () => {
+                            try {
+                                await instance.delete('/products/' + id);
+                                dispatch({ type: "DELETE_PRODUCT", payload: id })
+                                swal("Xóa sản phẩm thành công", {
+                                    icon: "success",
+                                    buttons: [''],
+                                    timer: 2000
+                                });
+                            } catch (error) {
+                                swal({
+                                    title: `${error.response.data}`,
+                                    icon: "warning",
+                                    dangerMode: true,
+                                })
+                            }
+                        }
+                    )()
+                } else {
+                    swal("Everything is fine", {
+                        icon: "success",
+                        buttons: [''],
+                        timer: 2000
+                    });
+                }
+            });
     }
     return (
         <>
@@ -55,7 +100,7 @@ const ListProduct = ({ products, onDel }) => {
                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm w-full-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             placeholder="Search Mockups, Logos, Design Templates..."
                             value={searchTerm}
-                            onChange={handleSearchChange}
+                            onChange={(e) => setSearchTerm(e.target.value)}
                         />
                         <button
                             type="button"
@@ -115,7 +160,7 @@ const ListProduct = ({ products, onDel }) => {
             </div>
             <div className="rounded-lg border border-gray-200 shadow-md my-5">
                 {
-                    isEmpty(products)
+                    isEmpty(state.products)
                         ?
                         <div className="flex items-center justify-center h-[25rem]" role="status">
                             <svg
@@ -163,26 +208,26 @@ const ListProduct = ({ products, onDel }) => {
                             </thead>
                             <tbody className="divide-y divide-gray-100 border-t border-gray-100">
                                 {
-                                    Array.isArray(filteredData) && filteredData.length > 0 ? filteredData.map((product) => (
+                                    Array.isArray(state.products) && state.products.length > 0 ? state.products.map((product) => (
                                         <tr key={product.id} className="hover:bg-gray-50">
                                             <th className="flex gap-3 px-6 py-4 font-normal text-gray-900">
-                                                <div className="text-sm">
-                                                    <div className="font-medium text-gray-700">{product.title}</div>
-                                                </div>
+                                                <span className="text-sm">
+                                                    <span className="font-medium text-gray-700">{product.title}</span>
+                                                </span>
                                             </th>
                                             <td className="px-6 py-4">
-                                                <img width="50px" height="50px" src={product.images || "Đang cập nhật"} />
+                                                <img width="50px" height="50px" src={product.images || "https://lh3.googleusercontent.com/proxy/9Nq_5pImjUn-toierHOXuGbtkBKV3ms7A6ng5bL9qGBlVg8de_lSKdI7tbau_Wk8yMq-AWoGSSuJ1A"} />
                                             </td>
                                             <td className="px-6 py-4">{product.price}</td>
                                             <td className="px-1 py-4">
-                                                <div className="flex gap-2">{product.category}</div>
+                                                <span className="flex gap-2">{product.category}</span>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="flex gap-2">{product.description}</div>
+                                                <span className="flex gap-2">{product.description}</span>
                                             </td>
                                             <td className="px-6 py-4">
-                                                <div className="flex justify-end gap-4">
-                                                    <button onClick={() => onDelete(product.id)} x-data="{ tooltip: 'Delete' }">
+                                                <span className="flex justify-end gap-4">
+                                                    <button onClick={() => handleDelete(product.id)} x-data="{ tooltip: 'Delete' }">
                                                         <svg
                                                             xmlns="http://www.w3.org/2000/svg"
                                                             fill="none"
@@ -216,8 +261,8 @@ const ListProduct = ({ products, onDel }) => {
                                                             />
                                                         </svg>
                                                     </Link>
-                                                    <div className="">
-                                                        <button onClick={() => onShow(product.id)} className="relative btn-show">
+                                                    <span className="">
+                                                        <button onClick={() => showProductDetail(product.id)} className="relative btn-show">
                                                             <svg
                                                                 xmlns="http://www.w3.org/2000/svg"
                                                                 fill="none"
@@ -238,8 +283,8 @@ const ListProduct = ({ products, onDel }) => {
                                                                 />
                                                             </svg>
                                                         </button>
-                                                    </div>
-                                                </div>
+                                                    </span>
+                                                </span>
                                             </td>
                                         </tr>
                                     )) : (

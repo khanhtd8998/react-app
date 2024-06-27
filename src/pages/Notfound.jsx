@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Notfound = () => {
     return (
-        <>
             <>
-                {/* component */}
-                {/* This is an example component */}
                 <div className="h-screen w-screen bg-gray-50 flex items-center">
                     <div className="container flex flex-col md:flex-row items-center justify-between px-5 text-gray-700">
                         <div className="w-full lg:w-1/2 mx-8">
@@ -19,7 +16,7 @@ const Notfound = () => {
                             </p>
                             <Link
                                 to={'/'}
-                                className="px-5 inline py-3 text-sm font-medium leading-5 shadow-2xl text-white transition-all duration-400 border border-transparent rounded-lg focus:outline-none bg-green-600 active:bg-red-600 hover:bg-red-700"
+                                className="px-5 inline py-3 text-sm font-medium leading-5 shadow-2xl text-white transition-all duration-400 border border-transparent rounded-lg focus:outline-none bg-green-600 active:bg-green-500 hover:bg-green-700"
                             >
                                 Back to homepage
                             </Link>
@@ -34,8 +31,6 @@ const Notfound = () => {
                     </div>
                 </div>
             </>
-
-        </>
     )
 }
 

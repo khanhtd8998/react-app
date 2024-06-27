@@ -113,10 +113,11 @@ const HeaderUser = () => {
                                             onClick={toggleDropdown}
                                         />
                                         {isOpen && (
-                                            <div className='absolute right-0 mt-44 w-44 bg-white border border-gray-300 rounded shadow-lg'>
+                                            <div className='absolute right-0 mt-52 w-44 bg-white border border-gray-300 rounded shadow-lg'>
                                                 <ul className=''>
                                                     <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><a className='w-full block' href="">Thông tin cá nhân</a></li>
                                                     <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><a className='w-full block' href="">Lịch sử đặt hàng</a></li>
+                                                    <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><Link to={'/admin'} className='w-full block' href="">Quản trị</Link></li>
                                                     <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><button onClick={handleLogout} className='mx-auto'>Đăng xuất</button></li>
                                                 </ul>
                                             </div>

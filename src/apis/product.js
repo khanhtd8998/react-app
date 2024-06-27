@@ -18,9 +18,9 @@ export const getProductById = async (id) => {
     }
 }
 
-export const updateProduct = async (p) => {
+export const updateProduct = async (id,p) => {
     try {
-        const { data } = await instance.put(`/products/${p.id}`, p);
+        const { data } = await instance.put(`/products/${id}`, p);
         return data
     } catch (error) {
         console.log(error)
