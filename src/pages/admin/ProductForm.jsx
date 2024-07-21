@@ -11,6 +11,7 @@ const { VITE_CLOUD_NAME, VITE_UPLOAD_PRESET } = import.meta.env;
 const ProductForm = () => {
     const navigate = useNavigate()
     const { id } = useParams()
+    const [categories, setCategories] = useState([])
     const { state, dispatch } = useContext(ProductContext)
     const [imgUrl, setImgUrl] = useState(null);
     const [imgOption, setImgOption] = useState("keep");
@@ -23,14 +24,23 @@ const ProductForm = () => {
         resolver: zodResolver(productSchema),
     })
     useEffect(() => {
-        if (id) {
+        (async () => {
+            const { data } = await instance.get("/categories");
+            setCategories(data.data);
+        })();
+
+    }, []);
+    if (id) {
+        useEffect(() => {
             (async () => {
                 const data = await getProductById(id);
-                reset(data);
+                reset(data.data);
                 setImgUrl(data.images)
             })();
-        }
-    }, [id, reset]);
+
+        }, [id, reset]);
+    }
+
     const uploadImage = async (file) => {
         try {
             const formData = new FormData();
@@ -75,8 +85,8 @@ const ProductForm = () => {
 
             }
             if (id) {
-                const { data } = await instance.patch(`/products/${id}`, updatedProduct);
-                dispatch({ type: "UPDATE_PRODUCT", payload: { id, product: updatedProduct } })
+                const { data } = await instance.patch(`/products/${id}`, product);
+                dispatch({ type: "UPDATE_PRODUCT", payload: data.data })
                 swal({
                     title: "Thành công!",
                     text: "Cập nhật sản phẩm thành công",
@@ -85,8 +95,9 @@ const ProductForm = () => {
                     timer: 2000
                 });
             } else {
-                const res = await createProduct(updatedProduct);
-                dispatch({ type: "ADD_PRODUCT", payload: res })
+                ///đây chưa xong
+                const res = await createProduct(product);
+                dispatch({ type: "ADD_PRODUCT", payload: res.data })
                 swal({
                     title: "Thành công!",
                     text: "Thêm sản phẩm thành công",
@@ -100,7 +111,7 @@ const ProductForm = () => {
             }, 1000)
         } catch (error) {
             swal({
-                title: `${error.response.data}`,
+                title: `${error}`,
                 icon: "warning",
                 dangerMode: true,
             })
@@ -118,15 +129,15 @@ const ProductForm = () => {
                                 htmlFor="Title"
                                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                             >
-                                Title
+                                Name
                             </label>
                             <input
-                                id='title'
+                                id='name'
                                 type="text"
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                {...register("title", { required: true })}
+                                {...register("name", { required: true })}
                             />
-                            {errors.title?.message && <span className='text-red-500'>{errors.title?.message}</span>}
+                            {errors.name?.message && <span className='text-red-500'>{errors.name?.message}</span>}
                         </div>
                         <div className="mb-5">
                             <label
@@ -188,9 +199,11 @@ const ProductForm = () => {
                                 {...register("category", { required: true })}
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             >
-                                <option defaultChecked value={"Mobile"}>Mobile</option>
-                                <option value={"Laptop"}>Laptop</option>
-                                <option value={"Watch"}>Watch</option>
+                                {
+                                    categories.map((item, index) => (
+                                        <option key={index} value={item._id}>{item.name}</option>
+                                    ))
+                                }
                             </select>
                             {errors.category?.message && <span className='text-red-500'>{errors.category?.message}</span>}
                         </div>

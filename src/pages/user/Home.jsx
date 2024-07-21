@@ -23,7 +23,7 @@ const Home = () => {
                     <div className="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
                         {
                             Array.isArray(state.products) && state.products.length > 0
-                                ? state.products.map((product) => (<ProductCard key={product.id} product={product} />))
+                                ? state.products.map((product) => (<ProductCard key={product._id} product={product} />))
                                 : <p>No products available.</p>
                         }
                     </div>

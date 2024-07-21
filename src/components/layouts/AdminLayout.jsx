@@ -1,7 +1,11 @@
 import React from 'react'
 import AdminHeader from '../admin/AdminHeader'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Navigate, Outlet } from 'react-router-dom'
+import { userAuth } from '../../contexts/AuthContext'
+import AccessDenied from '../../pages/user/AccessDenied'
 const AdminLayout = () => {
+    const { user } = userAuth()
+    if (!user || user?.role !== 'admin') return <AccessDenied></AccessDenied>
     return (
         <>
             <section>

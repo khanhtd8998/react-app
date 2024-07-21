@@ -1,27 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { userAuth } from '../../contexts/AuthContext';
 
 const HeaderUser = () => {
-    const [isLogin, setIsLogin] = useState(false)
-    const [user, setUser] = useState({})
+    const { user, handleLogout } = userAuth()
     const [isOpen, setIsOpen] = useState(false);
-    const token = JSON.parse(localStorage.getItem('token'))
-    const data = JSON.parse(localStorage.getItem('user'))
-    useEffect(() => {
-        if (token) {
-            setIsLogin(true)
-            setUser(data)
-        }
-    }, [])
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
-    const handleLogout = () => {
-        localStorage.removeItem('user')
-        localStorage.removeItem('token')
-        setIsLogin(!isLogin);
-        setUser(null)
-    }
+
     return (
         <>
             <header className="bg-white relative">
@@ -81,7 +68,7 @@ const HeaderUser = () => {
                                 </form>
                             </div>
                             {
-                                !isLogin && (
+                                !user && (
                                     <div className="sm:flex sm:gap-1">
                                         <Link
                                             className="block rounded-md bg-teal-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-teal-700"
@@ -101,9 +88,9 @@ const HeaderUser = () => {
                             }
 
                             {
-                                isLogin && (
+                                user && (
                                     <div className='relative flex items-center justify-end gap-3'>
-                                        <p><strong>{user?.username}</strong></p>
+                                        <p><strong>{user?.email}</strong></p>
                                         <img
                                             src={'https://picsum.photos/200/200'}
                                             className='rounded-full cursor-pointer'
@@ -117,7 +104,7 @@ const HeaderUser = () => {
                                                 <ul className=''>
                                                     <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><a className='w-full block' href="">Thông tin cá nhân</a></li>
                                                     <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><a className='w-full block' href="">Lịch sử đặt hàng</a></li>
-                                                    <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><Link to={'/admin'} className='w-full block' href="">Quản trị</Link></li>
+                                                    {/* <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><Link to={'/admin'} className='w-full block' href="">Quản trị</Link></li> */}
                                                     <li className='px-4 py-2 hover:bg-gray-100 cursor-pointer'><button onClick={handleLogout} className='mx-auto'>Đăng xuất</button></li>
                                                 </ul>
                                             </div>

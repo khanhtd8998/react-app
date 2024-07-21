@@ -4,9 +4,9 @@ import AccessDenied from '../../pages/user/AccessDenied'
 import AdminLayout from '../layouts/AdminLayout'
 
 const PrivateRouter = () => {
-    const accessToken = JSON.parse(localStorage.getItem('token'))
+    const accessToken = JSON.parse(localStorage.getItem('accessToken'))
     const data = JSON.parse(localStorage.getItem('user'))
-    if(!data || !accessToken) return <Navigate to="/login" />
+    if (!data || !accessToken) return <Navigate to="/login" />
     return (data.role === 'admin') ? <AdminLayout /> : <AccessDenied />
 
 }

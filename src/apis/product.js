@@ -1,3 +1,4 @@
+import { toFormData } from "axios";
 import instance from ".";
 import swal from "sweetalert";
 export const getAllProducts = async () => {
@@ -5,7 +6,7 @@ export const getAllProducts = async () => {
         const { data } = await instance.get('/products');
         return data
     } catch (error) {
-        console.log(error)
+        throw error
     }
 }
 
@@ -18,9 +19,9 @@ export const getProductById = async (id) => {
     }
 }
 
-export const updateProduct = async (id,p) => {
+export const updateProduct = async (id, p) => {
     try {
-        const { data } = await instance.put(`/products/${id}`, p);
+        const { data } = await instance.patch(`/products/${id}`, p);
         return data
     } catch (error) {
         console.log(error)

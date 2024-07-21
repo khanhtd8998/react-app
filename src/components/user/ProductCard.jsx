@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ProductCard = ({product}) => {
+const ProductCard = ({ product }) => {
     return (
         <>
             <div className="relative flex w-72 flex-col rounded-xl border border-t bg-white bg-clip-border text-gray-700 shadow-xl sm:mx-auto md:mx-auto">
                 <div className="relative mx-4 mt-4 h-40 overflow-hidden rounded-xl bg-white bg-clip-border text-gray-700">
-                    <Link to={`/products/${product.id}`}>
+                    <Link to={`/products/${product._id}`}>
                         <img src={product.images} className="h-full w-full object-cover" />
                     </Link>
                 </div>
-                <Link to={`/products/${product.id}`}>
+                <Link to={`/products/${product._id}`}>
                     <div className="pt-3 px-3  mb-3">
                         <div className="mb-2 flex items-star flex-col">
                             <p className="block lg:h-12 font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
-                                {product.title}
+                                {product.name}
                             </p>
                             <p className="block lg:h-5 font-sans text-base font-medium leading-relaxed text-blue-gray-900 antialiased">
                                 <span className="text-red-700">$ {product.price}</span>

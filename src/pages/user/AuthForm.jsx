@@ -5,9 +5,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { loginShema, registerSchema } from '../../schema/authSchema'
 import swal from 'sweetalert'
 import instance from '../../apis'
+import { userAuth } from '../../contexts/AuthContext'
 
 
 const AuthForm = ({ isRegister }) => {
+    const { handleLogin } = userAuth()
     const navigate = useNavigate()
     const {
         register,
@@ -17,13 +19,13 @@ const AuthForm = ({ isRegister }) => {
     } = useForm({
         resolver: zodResolver(isRegister ? registerSchema : loginShema)
     })
-    const onSubmit = (data) => {
+    const onSubmit = (user) => {
         (
             async () => {
                 try {
                     if (isRegister) {
-                        const { confirmPassword, ...newData } = data
-                        await instance.post('/register', newData)
+                        const { confirmPassword, ...newData } = user
+                        await instance.post('/auth/register', newData)
                         reset()
                         swal({
                             title: "Thành công!",
@@ -36,9 +38,10 @@ const AuthForm = ({ isRegister }) => {
                             navigate("/login")
                         }, 1000)
                     } else {
-                        const res = await instance.post('/login', data)
-                        localStorage.setItem('token', JSON.stringify(res.data?.accessToken))
-                        localStorage.setItem('user', JSON.stringify(res.data?.user))
+                        const { data } = await instance.post('/auth/login', user)
+                        // localStorage.setItem('accessToken', data.token)
+                        // localStorage.setItem('user', JSON.stringify(data.user))
+                        handleLogin(data.token, data?.data)
                         swal({
                             title: "Thành công!",
                             text: "Đăng nhập tài khoản thành công",
@@ -46,7 +49,7 @@ const AuthForm = ({ isRegister }) => {
                             icon: "success",
                             timer: 2000
                         });
-                        if (res.data?.user?.role === "admin") {
+                        if (data?.user?.role === "admin") {
                             setTimeout(() => {
                                 navigate("/admin")
                             }, 1000)
@@ -59,7 +62,7 @@ const AuthForm = ({ isRegister }) => {
                 } catch (error) {
                     swal({
                         title: "Thất bại",
-                        text: `${error.response.data}`,
+                        text: `${error.response?.data?.message}`,
                         icon: "warning",
                         buttons: [""],
                         dangerMode: true,

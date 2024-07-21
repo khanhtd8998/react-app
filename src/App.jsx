@@ -19,64 +19,25 @@ import AuthForm from './pages/user/AuthForm'
 
 function App() {
 
-  // const HandleSubmitForm = (p) => {
-  //   (
-  //     async () => {
-  //       try {
-  //         if (p.id) {
-  //           await updateProduct(p);
-  //           const newData = await getAllProducts();
-  //           setProducts(newData)
-  //           swal({
-  //             title: "Thành công!",
-  //             text: "Cập nhật sản phẩm thành công",
-  //             buttons: [""],
-  //             icon: "success",
-  //             timer: 2000
-  //           });
-  //         } else {
-  //           const data = await createProduct(p);
-  //           setProducts([...products, data]);
-  //           swal({
-  //             title: "Thành công!",
-  //             text: "Thêm sản phẩm thành công",
-  //             buttons: [""],
-  //             icon: "success",
-  //             timer: 2000
-  //           });
-  //         }
-  //         setTimeout(() => {
-  //           navigate("/admin/products/list")
-  //         }, 1000)
-  //       } catch (error) {
-  //         swal({
-  //           title: `${error.response.data}`,
-  //           icon: "warning",
-  //           dangerMode: true,
-  //         })
-  //       }
-  //     }
-  //   )()
-  // }
   return (
     <>
-        <Routes >
-          <Route path='/' element={<UserLayout />}>
-            <Route index element={<Home />} />
-            <Route path='/products/:id' element={<ProductDetail />} />
-            <Route path='/about' element={<About />} />
-            <Route path='/contact' element={<Contact />} />
-            <Route path='/register' element={<AuthForm isRegister />} />
-            <Route path='/login' element={<AuthForm />} />
-          </Route>
-          <Route path='/admin' element={<PrivateRouter />}>
-            <Route index element={<Dashboard />} />
-            <Route path='/admin/products/list' element={<ListProduct />} />
-            <Route path='/admin/products-form' element={<ProductForm />} />
-            <Route path='/admin/products-form/:id' element={<ProductForm />} />
-          </Route>
-          <Route path='*' element={<Notfound />} />
-        </Routes>
+      <Routes >
+        <Route path='/' element={<UserLayout />}>
+          <Route index element={<Home />} />
+          <Route path='/products/:id' element={<ProductDetail />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/contact' element={<Contact />} />
+          <Route path='/register' element={<AuthForm isRegister />} />
+          <Route path='/login' element={<AuthForm />} />
+        </Route>
+        <Route path='/admin' element={<AdminLayout />}>
+          <Route index element={<Dashboard />} />
+          <Route path='/admin/products/list' element={<ListProduct />} />
+          <Route path='/admin/products-form' element={<ProductForm />} />
+          <Route path='/admin/products-form/:id' element={<ProductForm />} />
+        </Route>
+        <Route path='*' element={<Notfound />} />
+      </Routes>
     </>
   )
 }
